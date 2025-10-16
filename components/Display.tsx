@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 interface DisplayProps {
   value: string;
@@ -8,7 +9,6 @@ interface DisplayProps {
 const Display: React.FC<DisplayProps> = ({ value }) => {
   let displayString = value;
 
-  // Use scientific notation for very large or small numbers
   if (displayString.length > 9 && !displayString.includes('e')) {
       const num = parseFloat(displayString);
       if (Math.abs(num) > 999999999 || (Math.abs(num) < 0.0000001 && num !== 0)) {
@@ -16,18 +16,32 @@ const Display: React.FC<DisplayProps> = ({ value }) => {
       }
   }
 
-  const fontSizeClass = displayString.length > 9 ? 'text-6xl' : displayString.length > 6 ? 'text-7xl' : 'text-8xl';
-  
+  const fontSize = displayString.length > 9 ? 60 : displayString.length > 6 ? 72 : 88;
+
   return (
-    <div className="text-white text-right w-full flex items-end justify-end overflow-hidden pb-2">
-      <span
-        className={`px-2 ${fontSizeClass} font-light break-all transition-all duration-200`}
-        style={{lineHeight: '1.1'}}
-      >
+    <View style={styles.container}>
+      <Text style={[styles.text, { fontSize }]} adjustsFontSizeToFit numberOfLines={1}>
         {displayString}
-      </span>
-    </div>
+      </Text>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    overflow: 'hidden',
+    paddingBottom: 8,
+    paddingHorizontal: 12,
+  },
+  text: {
+    color: '#fff',
+    fontWeight: '200',
+    textAlign: 'right',
+  },
+});
 
 export default Display;

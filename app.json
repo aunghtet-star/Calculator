@@ -1,0 +1,21 @@
+
+{
+  "expo": {
+    "name": "React Native Style Calculator",
+    "slug": "react-native-style-calculator",
+    "version": "1.0.0",
+    "main": "index.js",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {},
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
